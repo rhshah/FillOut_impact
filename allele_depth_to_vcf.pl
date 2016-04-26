@@ -63,7 +63,7 @@ if( defined $o_vcf )	{
 	$o_vcf =~ s/(\.)?(maf|tsv|csv|txt)?$/.vcf/;
 	$o_vcf .= ".vcf" unless( $o_vcf =~ m/(\.)?(vcf)?$/ );
 }else	{
-	$o_vcf = $o_dir."/allele_depth_merged.vcf" unless defined $o_vcf;
+	$o_vcf = $o_dir."/allele_depth_merged.vcf";
 }
 
 # obtain absolute paths for all the input and output files
