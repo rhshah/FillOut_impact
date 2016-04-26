@@ -35,9 +35,6 @@ if( @ARGV < 1 or
 }
 pod2usage( -verbose => 1, -input => \*DATA, -exitval => 0 ) if( $help );
 pod2usage( -verbose => 2, -input => \*DATA, -exitval => 0 ) if( $man );
-#unless( @ARGV and $ARGV[0] =~ m/^-/ ) {
-#    pod2usage( -verbose => 0, -message => "$0: Missing or invalid arguments! Try $0 --help for more info.\n", -exitval => 2 );
-#}
 
 # set default paths and constants
 $g_allele = "/dmp/resources/prod/software/dmp-impact-res/VERSIONS/dmp-impact-res-v118/bin/dmp_genotype_allele.pl" unless defined $g_allele and ( -e $g_allele );
