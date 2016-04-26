@@ -15,7 +15,7 @@ use feature qw( say );
 use Cwd qw( abs_path );
 
 
-# parse options and print error, if any, or print usage, if help requested.
+# parse options and print error, if any, or print usage, if help or man requested.
 my( $help, $man, $keep, $i_vcf, $g_allele, $samtools, $i_bam, $o_dir, $o_vcf, $qsub );
 if( @ARGV < 1 or
 	$ARGV[0] !~ m/^-/ or
@@ -203,9 +203,5 @@ allele_depth_to_vcf - Reformat and merge variants from multiple alleledepth file
 =head1 AUTHORS
 
  Gowtham Jayakumaran ( jayakumg <at> mskcc <dot> org )
-
-=head1 LICENSE
-
- Apache-2.0 | Apache License, Version 2.0 | https://www.apache.org/licenses/LICENSE-2.0
 
 =cut
