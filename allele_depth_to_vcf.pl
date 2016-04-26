@@ -111,7 +111,7 @@ map{ s/(.+\/)?//; s/(\.bam)?$/_mpileup.alleledepth/; } @alleledepth_file_names;
 while ( my $bam_file = shift @bam )	{
 	die "ERROR: $bam_file does not exist.\n" unless ( -e $bam_file );
 	say "Genotyping $bam_file ...";
-	my $exitstatus = system ( "/usr/bin/env perl $g_allele --outdir $o_dir -fmv $i_vcf -bam $bam_file --qsub /common/sge/bin/lx-amd64/qsub -q test.q 1>/dev/null" );
+	my $exitstatus = system ( "/usr/bin/env perl $g_allele --outdir $o_dir -fmv $i_vcf -bam $bam_file --qsub $qsub -q test.q 1>/dev/null" );
 	die "ERROR: $g_allele did not execute successfully. Please check your arguments and path of your input files.\n" unless( $exitstatus == 0 );
 }
 
