@@ -140,7 +140,7 @@ while( my $ad_file_path = shift @alleledepth_files )	{
 	die "ERROR: $ad_file_path does not exist.\n" unless ( -e $ad_file_path );
 	my $ad_file = IO::File->new( $ad_file_path ) or die "ERROR: Cannot open file: $ad_file_path\n";
 	chomp( my $header = $ad_file->getline );
-	die "ERROR: $ad_file is not in the proper mpileup.alleledepth file format" unless ( $header =~ m/^Ref_BAM\tSample\tChrom\tPOS\tRef\tAlt\tTotal_Depth\tRef_Depth\tAlt_Counts\tAlt_Freq\tRef_Forward\tRef_Reverse\tAlt_Forward\tAlt_Reverse$/ );
+	die "ERROR: $ad_file is not in the proper mpileup.alleledepth file format.\n" unless ( $header =~ m/^Ref_BAM\tSample\tChrom\tPOS\tRef\tAlt\tTotal_Depth\tRef_Depth\tAlt_Counts\tAlt_Freq\tRef_Forward\tRef_Reverse\tAlt_Forward\tAlt_Reverse$/ );
 	say "Parsing $ad_file_path ...";
 	while( my $line = $ad_file->getline )	{
 		chomp $line;
@@ -188,7 +188,7 @@ allele_depth_to_vcf - Reformat and merge variants from multiple alleledepth file
 
 =head1 OPTIONS
 
- --i_vcf          Path to input vcf file in vcf4.2 format. vcf4.2 file eight columns is also accepted. (required)
+ --i_vcf          Path to input vcf file in vcf4.2 format. vcf4.2 file with eight columns is also accepted. (required)
  --o_dir     	  Path to output directory for all the output files of this program (optional)
  --o_vcf          Path to output multi-sample VCF [<o_dir>/allele_depth_merged.vcf] (optional)
  --g_allele       Path to dmp_genotype_allele.pl script DMP IMPACT pipeline [/dmp/resources/prod/software/dmp-impact-res/production/bin/dmp_genotype_allele.pl] (optional)
