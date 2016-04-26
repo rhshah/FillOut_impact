@@ -160,7 +160,7 @@ $vcf_out->close;
 
 undef %variant_metrics;
 
-# function ad_to_vcf to reformats the allelic info from the mpileip.alleledepth into the .vcf format 
+# function ad_to_vcf reformats the allelic info from the mpileup.alleledepth into the .vcf format 
 sub ad_to_vcf {
 	my ( $variant_line ) = @_;
 	my @var = split( /\t/, $variant_line);
