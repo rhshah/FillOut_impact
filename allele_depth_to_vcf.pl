@@ -34,9 +34,6 @@ if( @ARGV < 1 or
 }
 pod2usage( -verbose => 1, -input => \*DATA, -exitval => 0 ) if( $help );
 pod2usage( -verbose => 2, -input => \*DATA, -exitval => 0 ) if( $man );
-#unless( @ARGV and $ARGV[0] =~ m/^-/ ) {
-#    pod2usage( -verbose => 0, -message => "$0: Missing or invalid arguments! Try $0 --help for more info.\n", -exitval => 2 );
-#}
 
 # set default paths and constants
 $g_allele = "/dmp/resources/prod/software/dmp-impact-res/VERSIONS/dmp-impact-res-v118/bin/dmp_genotype_allele.pl" unless defined $g_allele;
@@ -178,7 +175,7 @@ allele_depth_to_vcf - Reformat and merge variants from multiple alleledepth file
 =head1 SYNOPSIS
 
  perl allele_depth_to_vcf.pl --help
- perl allele_depth_to_vcf.pl --i_bam list_of_bams_files.txt --i_vcf file.vcf
+ perl allele_depth_to_vcf.pl --i_bam list_of_bams_files.txt --i_vcf file.vcf --keep
 
 =head1 OPTIONS
 
