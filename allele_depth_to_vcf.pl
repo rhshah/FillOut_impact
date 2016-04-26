@@ -16,7 +16,7 @@ use Cwd qw( abs_path );
 
 
 # parse options and print error, if any, or print usage, if help requested.
-my( $help, $man, $keep, $i_vcf, $g_allele, $samtools, $i_bam, $o_dir, $o_vcf );
+my( $help, $man, $keep, $i_vcf, $g_allele, $samtools, $i_bam, $o_dir, $o_vcf, $qsub );
 if( @ARGV < 1 or
 	$ARGV[0] !~ m/^-/ or
 	!GetOptions(
@@ -28,19 +28,28 @@ if( @ARGV < 1 or
 		'samtools=s' => \$samtools,
 		'i_bam=s' => \$i_bam,
 		'o_dir=s' => \$o_dir,
-		'o_vcf=s' => \$o_vcf
+		'o_vcf=s' => \$o_vcf,
+		'qsub=s' => \$qsub
 		) )	{
 	pod2usage( -verbose => 1, -input => \*DATA, -exitval => 2 );
 }
 pod2usage( -verbose => 1, -input => \*DATA, -exitval => 0 ) if( $help );
 pod2usage( -verbose => 2, -input => \*DATA, -exitval => 0 ) if( $man );
+#unless( @ARGV and $ARGV[0] =~ m/^-/ ) {
+#    pod2usage( -verbose => 0, -message => "$0: Missing or invalid arguments! Try $0 --help for more info.\n", -exitval => 2 );
+#}
 
 # set default paths and constants
-$g_allele = "/dmp/resources/prod/software/dmp-impact-res/VERSIONS/dmp-impact-res-v118/bin/dmp_genotype_allele.pl" unless defined $g_allele;
+$g_allele = "/dmp/resources/prod/software/dmp-impact-res/VERSIONS/dmp-impact-res-v118/bin/dmp_genotype_allele.pl" unless defined $g_allele and ( -e $g_allele );
 $samtools = "/dmp/resources/prod/tools/bio/samtools/production/samtools" unless defined $samtools;
+$qsub = "/common/sge/bin/lx-amd64/qsub" unless defined $qsub;
 $samtools = `which samtools` unless defined $samtools and ( -e $samtools );
 chomp ( $samtools );
 ( $samtools and -e $samtools ) or die "ERROR: Please install samtools and include it in your PATH.\n";
+$qsub = `which qsub` unless defined $qsub and ( -e $qsub );
+chomp ( $qsub );
+( $qsub and -e $qsub ) or die "ERROR: Please provide the path to qsub or include it in your PATH.\n";
+
 die "ERROR: Please provide the path for your genotype script. Try perl $0 --help for more info.\n" unless ( -e $g_allele ) ;
 die "ERROR: Please provide a vcf file. Try perl $0 --help for more info.\n" unless defined $i_vcf and ( -e $i_vcf ) ;
 die "ERROR: Please provide a proper argument for --i_bam. Try perl $0 --help for more info.\n" unless defined $i_bam and ( -e $i_bam ) ;
@@ -175,7 +184,7 @@ allele_depth_to_vcf - Reformat and merge variants from multiple alleledepth file
 =head1 SYNOPSIS
 
  perl allele_depth_to_vcf.pl --help
- perl allele_depth_to_vcf.pl --i_bam list_of_bams_files.txt --i_vcf file.vcf --keep
+ perl allele_depth_to_vcf.pl --i_bam list_of_bams_files.txt --i_vcf file.vcf
 
 =head1 OPTIONS
 
@@ -184,6 +193,7 @@ allele_depth_to_vcf - Reformat and merge variants from multiple alleledepth file
  --o_vcf          Path to output multi-sample VCF [<o_dir>/allele_depth_merged.vcf] (optional)
  --g_allele       Path to dmp_genotype_allele.pl script DMP IMPACT pipeline [/dmp/resources/prod/software/dmp-impact-res/production/bin/dmp_genotype_allele.pl] (optional)
  --samtools       Path to samtools [/dmp/resources/prod/tools/bio/samtools/production/samtools] (optional)
+ --qsub           Path to qsub [/common/sge/bin/lx-amd64/qsub] (optional)
  --i_bam          Comma-separated absolute paths to bam files or a text file, with a .txt suffix, of all the absolute paths to bam files with line breaks (required)
  --keep           Keep intermediate mpileup.alledepth and other files (optional)
  --help           Print help message and quit (optional)
