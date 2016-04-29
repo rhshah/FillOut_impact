@@ -73,7 +73,7 @@ chomp $o_dir;
 
 # set output .vcf file. To be standardized later
 if( defined $o_vcf )	{
-	map{ s/(.+\/)?/$o_dir\//; s/(\.)?(maf|tsv|csv|txt)?$/.vcf/ } $o_vcf;
+	map{ s/(.+\/)?/$o_dir\//; s/(\.)?(maf|tsv|csv|txt|vcf)?$/.vcf/ } $o_vcf;
 	$o_vcf .= ".vcf" unless( $o_vcf =~ m/(\.)?(vcf)?$/ );
 }else	{
 	$o_vcf = $o_dir."/allele_depth_merged.vcf";
