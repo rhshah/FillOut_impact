@@ -5,7 +5,7 @@
 # Author: Gowtham Jayakumaran ( jayakumg@mskcc.org )
 # Adapted from IMPACT pipeline.
 # Date: 25/Apr/2016
-# Last Modified: 04/May/2016
+# Last Modified: 05/May/2016
 # Modification timeline ( for major changes )
 # 28/Apr/2016 --- v1.1 - Added support for batch processing and the option to handle either qsub or bsub.
 # 05/May/2016 --- v1.2 - Updated qsub/bsub wait option. Made compatible with the impact pipeline.
