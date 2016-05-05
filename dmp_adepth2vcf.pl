@@ -343,9 +343,9 @@ dmp_adepth2vcf.pl v1.2 - Genotype one or more bams; reformat and merge allelic i
 
  perl dmp_adepth2vcf.pl --help
 
- SGE: perl dmp_adepth2vcf.pl path_to_dmp_adepth2vcf.pl --i_vcf path_to_input_vcf_file.vcf --i_bam path_to_bams.txt --RefFile path_to_hg19.fasta --samtools path_to_samtools_binary --bedtools path_to_dir_with_bedtools --bsub path_to_bsub --queue example_queue --o_dir path_to_out_dir --identifier name_for_output_vcf
+ SGE: perl path_to_dmp_adepth2vcf.pl --i_vcf path_to_input_vcf_file.vcf --i_bam path_to_bams.txt --RefFile path_to_hg19.fasta --samtools path_to_samtools_binary --bedtools path_to_dir_with_bedtools --bsub path_to_bsub --queue example_queue --o_dir path_to_out_dir --identifier name_for_output_vcf
  
- LSF: perl dmp_adepth2vcf.pl path_to_dmp_adepth2vcf.pl --g_allele path_to_dmp_genotype_allele.pl --i_vcf path_to_input_vcf_file.vcf --i_bam path_to_bams.txt --RefFile path_to_hg19.fasta --samtools path_to_samtools_binary --bedtools path_to_dir_with_bedtools --bsub path_to_bsub --queue example_queue --o_dir path_to_out_dir --identifier name_for_output_vcf
+ LSF: perl path_to_dmp_adepth2vcf.pl --g_allele path_to_dmp_genotype_allele.pl --i_vcf path_to_input_vcf_file.vcf --i_bam path_to_bams.txt --RefFile path_to_hg19.fasta --samtools path_to_samtools_binary --bedtools path_to_dir_with_bedtools --bsub path_to_bsub --queue example_queue --o_dir path_to_out_dir --identifier name_for_output_vcf
 
 
 =head1 OPTIONS
