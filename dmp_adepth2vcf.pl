@@ -23,7 +23,7 @@ my $now = time;
 
 # parse options and print error, if any, or print usage, if help or man requested.
 my( $help, $man, $delete, $i_vcf, $g_allele, $samtools, $bedtools, $RefFile, $i_bam, $mmq, $mbq, $o_dir, $identifier, $o_vcf, $perl, $qsub, $bsub, $queue );
-my $logger = MSKCC_DMP_Logger->get_logger('AD_TO_VCF');
+my $logger = MSKCC_DMP_Logger->get_logger('ADEPTH_TO_VCF');
 $logger->start_local();
 
 if( @ARGV < 1 or
