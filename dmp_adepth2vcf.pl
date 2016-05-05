@@ -165,7 +165,6 @@ MakeCSH( $o_dir );
 my $bam_file_count = 0;
 while( my $bam_file = shift @bam )	{
 		die $logger->fatal( "$bam_file does not exist. ERROR: $!" ) unless ( -e $bam_file );
-		#my $job_name = $bam_sample_names[++$bam_file_count];
 		my $job_name = ++$bam_file_count;
 		$logger->info( "Genotyping $bam_file using variant information from $i_vcf." );
 		eval {
