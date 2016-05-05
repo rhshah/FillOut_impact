@@ -197,10 +197,9 @@ push( @deletefiles, "Notify.csh" );
 WaitToFinish( $o_dir, @notifyNames );
 
 $logger->info( "Genotyping is done for all the given bam files." );
-undef $!;
 
 # parse all the mpileup.alleledepth files in $o_dir and merge the output into a single VCF
-my $vcf_out = IO::File->new( $o_vcf, ">" ) or die logger->fatal( "Failed to create file $o_vcf." );
+my $vcf_out = IO::File->new( $o_vcf, ">" ) or die $logger->fatal( "Failed to create file $o_vcf." );
 
 # vcf headers and comments
 $vcf_out->print( "##fileformat=VCFv4.2\n" );
@@ -221,7 +220,7 @@ my %variant_metrics = (); # hash of all unique variants and their coordinates as
 while( my $ad_file_path = shift @alleledepth_files )	{
 	chomp $ad_file_path;
 	die $logger->fatal( "ERROR: $ad_file_path does not exist." ) unless ( -e $ad_file_path );
-	my $ad_file = IO::File->new( $ad_file_path ) or logger->fatal( "Could not open file $ad_file_path" );
+	my $ad_file = IO::File->new( $ad_file_path ) or $logger->fatal( "Could not open file $ad_file_path" );
 	chomp( my $header = $ad_file->getline );
 	die $logger->fatal( "$ad_file is not in the proper mpileup.alleledepth file format." ) unless ( $header =~ m/^Ref_BAM\tSample\tChrom\tPOS\tRef\tAlt\tTotal_Depth\tRef_Depth\tAlt_Counts\tAlt_Freq\tRef_Forward\tRef_Reverse\tAlt_Forward\tAlt_Reverse$/ );
 	$logger->info( "Gathering allele depth and vf info from $ad_file_path ..." );
