@@ -373,7 +373,7 @@ dmp_adepth2vcf.pl v1.2 - Genotype one or more bams; reformat and merge allelic i
 
  dmp_adepth2vcf.pl v1.2. This script genotypes the bam files provided using the MSK-IMPACT dmp_genotype_allele.pl script and merges all the resulting mpileup.alleledepth into a single VCF, in which each line contains a unique variant with allele depth and variant frequency information for all the samples.
 
- Example usage on SGE or LSG:
+ Example usage on SGE or LSF:
  Sample call for SGE:
  qsub_path -q queue_name -V -N jobname -wd working_dir_path -e stderr_name -o stdout_name -l h_vmem=2G,virtual_free=2G -pe smp 1 -b y perl_path path_to_dmp_adepth2vcf.pl --i_vcf path_to_input_vcf_file.vcf --i_bam path_to_bams.txt --RefFile path_to_hg19.fasta --samtools path_to_samtools_binary --bedtools path_to_dir_with_bedtools --qsub qsub_path --queue queue_name --o_dir path_to_out_dir --identifier name_for_output_vcf
  
