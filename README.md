@@ -2,7 +2,7 @@
 
 #####Usage:
 
-Run perl dmp_adpeth2vcf.pl --man or perl dmp_adpeth2vcf.pl --help for usage details.
+Run perl dmp_adepth2vcf.pl --man or perl dmp_adepth2vcf.pl --help for usage details.
 
 #####Input vcf files:
 
