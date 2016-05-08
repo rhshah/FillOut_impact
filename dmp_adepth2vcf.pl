@@ -119,7 +119,7 @@ $logger->info( "Output vcf will be printed to $o_vcf." );
 my @bam = ();
 if ($i_bam =~ /.txt$/ )	{
 	my $bam_file = IO::File->new( $i_bam ) or die $logger->fatal( "Cannot open file $i_bam." );
-	$logger->info( "Bam files are provided as a file of files, will one file path per line." );
+	$logger->info( "Bam files are provided as a file of files, with one file path per line." );
 	while ( <$bam_file> )	{
 		next if ( $_ =~ /^#/ );
 		$_ =~ s/^\s+|\s+$|\r|\n//g;
@@ -128,7 +128,7 @@ if ($i_bam =~ /.txt$/ )	{
 	$bam_file->close;
 }else {
 	@bam = map{ s/^\s+|\s+$|\r|\n//g; $_ } split( /,/, $i_bam );
-	$logger->warn( "Bam files are provided as comma-separated string of bam file paths." );
+	$logger->info( "Bam files are provided as comma-separated string of bam file paths." );
 }
 
 # check whether the vcf file provided is in the proper format. A more stringent check can be implemented, if necessary.
