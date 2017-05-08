@@ -260,10 +260,11 @@ sub ad_to_vcf {
 	my( $variant_line ) = @_;
 	my @var = split( /\t/, $variant_line);
 	map{ s/^\s+|\s+$|\r|\n//g; $_ } @var;
-	$var[9] = 0 if( ( @var == 14 ) and ( $var[9] =~ /^[0.]+$/ ) ); # Simplify vf values of 0.0000 to 0.
+	@var = map{ $_ ? $_ : "" } @var;
+	@var[6..13] = map{ ( $_ eq "") ? 0 : $_ } @var[3..13];
+	$var[9] = 0 if( $var[9] =~ /^[0.]+$/ ); # Simplify vf values of 0.0000 to 0.
 	my $variant_info = join( "\t", @var[2..3], ".", @var[4..5] );
-	my $allelic_info = qw ( 0:0:0:0:0:0:0:0:0:0 ); # for variants in the input vcf that are not genotyped in a given bam file
-	$allelic_info = join( ":", @var[6..9], $var[10]+$var[12], $var[11]+$var[13], @var[10..13] ) if( @var == 14 );
+	my $allelic_info = join( ":", @var[6..9], $var[10]+$var[12], $var[11]+$var[13], @var[10..13] );
 	return( $variant_info, $allelic_info );
 }
 #####################
